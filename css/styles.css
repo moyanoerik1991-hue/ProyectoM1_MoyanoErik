@@ -1,0 +1,66 @@
+/* Reset de estilos básicos para una apariencia limpia y consistente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 15px;
+  background-color: #eee;
+}
+
+.titulo-principal {
+  font-size: 24px;
+}
+
+.descripcion {
+  font-size: 14px;
+}
+
+/* Contenido principal */
+.paleta {
+  padding: 15px;
+}
+
+/* Controles */
+.control {
+  margin-bottom: 15px;
+}
+
+.control label {
+  margin-right: 5px;
+}
+
+.control select {
+  margin-right: 10px;
+}
+
+.control button {
+  margin-right: 5px;
+}
+
+/* Galería (sin columnas) */
+.galeria {
+  display: block;
+}
+
+.galeria div {
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #eee;
+  margin-top: 20px;
+}
