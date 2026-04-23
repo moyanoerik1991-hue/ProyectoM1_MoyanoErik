@@ -85,7 +85,7 @@ function generarTarjetas(cantidad, formato) {
     galeria.appendChild(tarjeta);
   }
 }
-// Eventos cuando cambia el select
+/* Colores aleatorios al dar click al formato */
 btnHSL.addEventListener("click", () => {
   const cantidad = parseInt(select.value, 10);
   generarTarjetas(cantidad, "HSL");
@@ -94,4 +94,10 @@ btnHSL.addEventListener("click", () => {
 btnHEX.addEventListener("click", () => {
   const cantidad = parseInt(select.value, 10);
   generarTarjetas(cantidad, "HEX");
+});
+
+/* Colores Aleatorios HEX o HSL al cargar la página */
+document.addEventListener("DOMContentLoaded", () => {
+  const formato = Math.random() > 0.5 ? "HSL" : "HEX";
+  generarTarjetas(3, formato);
 });

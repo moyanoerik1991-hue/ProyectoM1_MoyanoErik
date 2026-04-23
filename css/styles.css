@@ -6,7 +6,7 @@
 }
 /* BASE */
 html {
-  font-size: 100%;
+  font-size: 100%;  /* si cambias esto todo escalará proporcionalmente */
 }
 /* Body */
 body {
@@ -50,15 +50,18 @@ body {
   margin-right: 0.3rem;
 }
 
-/* Galería (sin columnas) */
+/* Galería de tarjetas */
 .galeria {
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 0.625rem;         
 }
 
 .tarjeta {
   background-color: var(--color-fondo, #ccc);
   color: var(--color-texto, #000);
   margin-bottom: 0.625rem;
+  min-height: 10rem;
   padding: 1.25rem;
 }
 
