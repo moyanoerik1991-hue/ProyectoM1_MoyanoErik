@@ -4,7 +4,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/* BASE */
+html {
+  font-size: 100%;
+}
 /* Body */
 body {
   font-family: Arial, sans-serif;
@@ -13,38 +16,38 @@ body {
 /* Header */
 .header {
   text-align: center;
-  padding: 15px;
+  padding: 1rem;
   background-color: #eee;
 }
 
 .titulo-principal {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .descripcion {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* Contenido principal */
 .paleta {
-  padding: 15px;
+  padding: 1rem;
 }
 
 /* Controles */
 .control {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .control label {
-  margin-right: 5px;
+  margin-right: 0.3rem;
 }
 
 .control select {
-  margin-right: 10px;
+  margin-right: 0.6rem;
 }
 
 .control button {
-  margin-right: 5px;
+  margin-right: 0.3rem;
 }
 
 /* Galería (sin columnas) */
@@ -52,15 +55,17 @@ body {
   display: block;
 }
 
-.galeria div {
-  margin-bottom: 10px;
-  padding: 20px;
+.tarjeta {
+  background-color: var(--color-fondo, #ccc);
+  color: var(--color-texto, #000);
+  margin-bottom: 0.625rem;
+  padding: 1.25rem;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 10px;
+  padding: 1rem;
   background-color: #eee;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }

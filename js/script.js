@@ -41,16 +41,17 @@ function colorTextoParaHEX(hex) {
 
 /* GENERA LAS TARJETAS CON LOS COLORES */
 function generarTarjetas(cantidad, formato) {
-  if (!cantidad || cantidad < 1) {
-    alert("Seleccioná una cantidad válida");
+  if (!cantidad || cantidad <= 0) {
+      alert("Seleccioná una cantidad válida");
     return;
-  }
+}
 
-  galeria.innerHTML = "";
+  /* Menos invasivo que el innerHTML, mantiene los eventos y es más eficiente */
+  galeria.replaceChildren();
 
   for (let i = 0; i < cantidad; i++) {
     const tarjeta = document.createElement("article");
-    tarjeta.classList.add("color-formato");
+    tarjeta.classList.add("tarjeta");
     
     let color;
     let colorTexto;
@@ -64,20 +65,27 @@ function generarTarjetas(cantidad, formato) {
     colorTexto = colorTextoParaHEX(color);
   }
 
-    tarjeta.innerHTML = `
-        <div class="foto-info">
-            <h3 class="foto-titulo">${i + 1}. Color en Formato ${formato}:</h3>
-            <p class="color-formato">${color}</p>
-        </div>
-    `;
+  /* se elimina el innerHTML para evitar inyección de scripts */
+  const titulo = document.createElement("h3");
+  titulo.textContent = `${i + 1}. Color en Formato ${formato}:`;
+
+  const texto = document.createElement("p");
+  texto.textContent = color;
+
+  const contenedor = document.createElement("div");
+  contenedor.appendChild(titulo);
+  contenedor.appendChild(texto);
+
+  tarjeta.appendChild(contenedor);
+
     /* La tarjeta se pinta con el color generado y el texto se adapta al contraste */
-    tarjeta.style.backgroundColor = color;
-    tarjeta.style.color = colorTexto;
+    tarjeta.style.setProperty("--color-fondo", color);
+    tarjeta.style.setProperty("--color-texto", colorTexto);
     /* Se agrega la tarjeta a la galería */
     galeria.appendChild(tarjeta);
   }
 }
-// Evento cuando cambia el select
+// Eventos cuando cambia el select
 btnHSL.addEventListener("click", () => {
   const cantidad = parseInt(select.value, 10);
   generarTarjetas(cantidad, "HSL");
