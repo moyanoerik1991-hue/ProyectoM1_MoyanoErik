@@ -53,16 +53,41 @@ body {
 /* Galería de tarjetas */
 .galeria {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 0.625rem;         
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.625rem;
+}
+/* Tablets */
+@media (max-width: 48rem) {
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móviles */
+@media (max-width: 30rem) {
+  .galeria {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tarjeta {
+  position: relative;
   background-color: var(--color-fondo, #ccc);
   color: var(--color-texto, #000);
-  margin-bottom: 0.625rem;
-  min-height: 10rem;
   padding: 1.25rem;
+  min-height: 10rem;
+  /* aspect-ratio: 1 / 1; */
+  /* mejora visual */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  /* para que no se deformen en el grid */
+  display: flex;
+}
+.info-color {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
 }
 
 /* Footer */

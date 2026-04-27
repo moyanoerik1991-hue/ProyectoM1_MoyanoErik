@@ -12,10 +12,36 @@ function colorHSLAleatorio() {
   const l = Math.floor(Math.random() * 100);
 
   return {
-    color: `hsl(${h}, ${s}%, ${l}%)`,
+    color: `HSL(${h}, ${s}%, ${l}%)`,
+    h,
+    s,
     l
   };
 }
+/* hsltohex nuevo */
+function HSLtoHEX(h, s, l) {
+  s /= 100;
+  l /= 100;
+
+  const k = n => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+
+  const f = n =>
+    Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))));
+
+  const r = f(0);
+  const g = f(8);
+  const b = f(4);
+
+  return (
+    "#" +
+    [r, g, b]
+      .map(x => x.toString(16).padStart(2, "0"))
+      .join("")
+      .toUpperCase()
+  );
+}
+
 /* GENERA COLOR ALEATORIO EN FORMATO HEX */
 function colorHEXAleatorio() {
   const letras = "0123456789ABCDEF";
@@ -42,50 +68,68 @@ function colorTextoParaHEX(hex) {
 /* GENERA LAS TARJETAS CON LOS COLORES */
 function generarTarjetas(cantidad, formato) {
   if (!cantidad || cantidad <= 0) {
-      alert("Seleccioná una cantidad válida");
+    alert("Seleccioná una cantidad válida");
     return;
-}
+  }
 
-  /* Menos invasivo que el innerHTML, mantiene los eventos y es más eficiente */
   galeria.replaceChildren();
 
   for (let i = 0; i < cantidad; i++) {
     const tarjeta = document.createElement("article");
     tarjeta.classList.add("tarjeta");
-    
+
     let color;
     let colorTexto;
 
-  if (formato === "HSL") {
-    const { color: colorHSL, l } = colorHSLAleatorio();
-    color = colorHSL;
-    colorTexto = l > 50 ? "black" : "white";
-  } else {
-    color = colorHEXAleatorio();
-    colorTexto = colorTextoParaHEX(color);
-  }
+    const info = document.createElement("div");
+    info.classList.add("info-color");
 
-  /* se elimina el innerHTML para evitar inyección de scripts */
-  const titulo = document.createElement("h3");
-  titulo.textContent = `${i + 1}. Color en Formato ${formato}:`;
+    const titulo = document.createElement("h3");
+    titulo.textContent = `${i + 1}. ${formato}`;
 
-  const texto = document.createElement("p");
-  texto.textContent = color;
+    /* LÓGICA SEGÚN FORMATO */
+    if (formato === "HSL") {
+      const { color: colorHSL, h, s, l } = colorHSLAleatorio();
+      color = colorHSL;
 
-  const contenedor = document.createElement("div");
-  contenedor.appendChild(titulo);
-  contenedor.appendChild(texto);
+      const hex = HSLtoHEX(h, s, l);
+      colorTexto = l > 50 ? "black" : "white";
 
-  tarjeta.appendChild(contenedor);
+      const textoHSL = document.createElement("p");
+      textoHSL.textContent = colorHSL;
 
-    /* La tarjeta se pinta con el color generado y el texto se adapta al contraste */
+      const textoHEX = document.createElement("p");
+      textoHEX.textContent = `HEX ${hex}`;
+
+      info.appendChild(titulo);
+      info.appendChild(textoHSL);
+      info.appendChild(textoHEX);
+
+    } else {
+      color = colorHEXAleatorio();
+      colorTexto = colorTextoParaHEX(color);
+
+      const textoHEX = document.createElement("p");
+      textoHEX.textContent = color;
+
+      info.appendChild(titulo);
+      info.appendChild(textoHEX);
+    }
+
+    tarjeta.appendChild(info);
+
+    /* Aplicar estilos dinámicos */
     tarjeta.style.setProperty("--color-fondo", color);
     tarjeta.style.setProperty("--color-texto", colorTexto);
-    /* Se agrega la tarjeta a la galería */
+
     galeria.appendChild(tarjeta);
   }
 }
-/* Colores aleatorios al dar click al formato */
+
+/* =========================
+   EVENTOS
+========================= */
+
 btnHSL.addEventListener("click", () => {
   const cantidad = parseInt(select.value, 10);
   generarTarjetas(cantidad, "HSL");
@@ -99,5 +143,5 @@ btnHEX.addEventListener("click", () => {
 /* Colores Aleatorios HEX o HSL al cargar la página */
 document.addEventListener("DOMContentLoaded", () => {
   const formato = Math.random() > 0.5 ? "HSL" : "HEX";
-  generarTarjetas(3, formato);
+  generarTarjetas(9, formato);
 });
