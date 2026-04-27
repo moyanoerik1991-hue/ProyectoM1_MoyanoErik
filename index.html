@@ -14,16 +14,18 @@
            <p class="descripcion">Encuentra el Color que Mejor se Adapte a tu Estilo</p>
        </div>
     </header>
+    <button id="toggleTema" class="toggle-tema">
+    🌙
+    </button>
     <!-- AREA DE CONTENIDO PRINCIPAL -->
     <main class="paleta">
         <div class="control">
            <label for="cantidad">Cantidad de Colores:</label>
                 <!-- EL USUARIO ELIGE LA CANTIDAD DE COLORES -->
                 <select id="cantidad">
-                    <option value="0">Cantidad</option>
                     <option value="6">6</option>
                     <option value="8">8</option>
-                    <option value="9">9</option>
+                    <option value="9" selected>9</option>
                 </select>
                 <button id="btnHSL">HSL</button>
                 <button id="btnHEX">HEX</button>

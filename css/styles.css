@@ -15,9 +15,34 @@ body {
 
 /* Header */
 .header {
+  position: relative;
   text-align: center;
   padding: 1rem;
   background-color: #eee;
+}
+/* Modo oscuro/claro  */
+.toggle-tema {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .header {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode footer {
+  background-color: #1e1e1e;
 }
 
 .titulo-principal {
@@ -88,6 +113,19 @@ body {
   bottom: 0.5rem;
   left: 0.5rem;
   font-size: 0.8rem;
+}
+.mensaje-copy {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+
+  font-size: 0.75rem;
 }
 
 /* Footer */

@@ -5,6 +5,9 @@ const galeria = document.getElementById("galeria");
 const btnHSL = document.getElementById("btnHSL");
 const btnHEX = document.getElementById("btnHEX");
 
+const toggleTema = document.getElementById("toggleTema");
+
+let mensajeActivo = null;
 /* GENERA COLOR ALEATORIO EN FORMATO HSL */
 function colorHSLAleatorio() {
   const h = Math.floor(Math.random() * 360);
@@ -67,11 +70,7 @@ function colorTextoParaHEX(hex) {
 
 /* GENERA LAS TARJETAS CON LOS COLORES */
 function generarTarjetas(cantidad, formato) {
-  if (!cantidad || cantidad <= 0) {
-    alert("Seleccioná una cantidad válida");
-    return;
-  }
-
+  
   galeria.replaceChildren();
 
   for (let i = 0; i < cantidad; i++) {
@@ -80,6 +79,7 @@ function generarTarjetas(cantidad, formato) {
 
     let color;
     let colorTexto;
+    let hexFinal;
 
     const info = document.createElement("div");
     info.classList.add("info-color");
@@ -89,35 +89,63 @@ function generarTarjetas(cantidad, formato) {
 
     /* LÓGICA SEGÚN FORMATO */
     if (formato === "HSL") {
-      const { color: colorHSL, h, s, l } = colorHSLAleatorio();
-      color = colorHSL;
+        const { color: colorHSL, h, s, l } = colorHSLAleatorio();
+        color = colorHSL;
 
-      const hex = HSLtoHEX(h, s, l);
-      colorTexto = l > 50 ? "black" : "white";
+        const hex = HSLtoHEX(h, s, l);
+        hexFinal = hex;
 
-      const textoHSL = document.createElement("p");
-      textoHSL.textContent = colorHSL;
+        colorTexto = l > 50 ? "black" : "white";
 
-      const textoHEX = document.createElement("p");
-      textoHEX.textContent = `HEX ${hex}`;
+        const textoHSL = document.createElement("p");
+        textoHSL.textContent = colorHSL;
 
-      info.appendChild(titulo);
-      info.appendChild(textoHSL);
-      info.appendChild(textoHEX);
+        const textoHEX = document.createElement("p");
+        textoHEX.textContent = `HEX ${hex}`;
+
+        info.appendChild(titulo);
+        info.appendChild(textoHSL);
+        info.appendChild(textoHEX);
 
     } else {
-      color = colorHEXAleatorio();
-      colorTexto = colorTextoParaHEX(color);
+          color = colorHEXAleatorio();
+          hexFinal = color;
 
-      const textoHEX = document.createElement("p");
-      textoHEX.textContent = color;
+          colorTexto = colorTextoParaHEX(color);
 
-      info.appendChild(titulo);
-      info.appendChild(textoHEX);
+          const textoHEX = document.createElement("p");
+          textoHEX.textContent = `HEX ${color}`;
+
+          info.appendChild(titulo);
+          info.appendChild(textoHEX);
     }
 
     tarjeta.appendChild(info);
 
+    tarjeta.addEventListener("click", () => {
+      navigator.clipboard.writeText(hexFinal)
+        .then(() => {
+
+          /* eliminar mensaje anterior si existe */
+          if (mensajeActivo) {
+          mensajeActivo.remove();
+          }
+
+          /* crear nuevo mensaje */
+          const mensaje = document.createElement("span");
+          mensaje.textContent = "Copiado ✔";
+          mensaje.classList.add("mensaje-copy");
+
+          tarjeta.appendChild(mensaje);
+
+          /* guardar referencia */
+          mensajeActivo = mensaje;
+
+        })
+        .catch(err => {
+          console.error("Error al copiar:", err);
+        });
+      });
     /* Aplicar estilos dinámicos */
     tarjeta.style.setProperty("--color-fondo", color);
     tarjeta.style.setProperty("--color-texto", colorTexto);
@@ -138,6 +166,16 @@ btnHSL.addEventListener("click", () => {
 btnHEX.addEventListener("click", () => {
   const cantidad = parseInt(select.value, 10);
   generarTarjetas(cantidad, "HEX");
+});
+
+toggleTema.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  if (document.body.classList.contains("dark-mode")) {
+    toggleTema.textContent = "☀️";
+  } else {
+    toggleTema.textContent = "🌙";
+  }
 });
 
 /* Colores Aleatorios HEX o HSL al cargar la página */
