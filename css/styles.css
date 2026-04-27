@@ -75,6 +75,14 @@ body.dark-mode footer {
   margin-right: 0.3rem;
 }
 
+.lock {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 /* Galería de tarjetas */
 .galeria {
   display: grid;
