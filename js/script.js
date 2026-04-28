@@ -101,7 +101,7 @@ function crearTarjeta(hexFinal, index, formato = "HEX", hslData = null) {
 
   if (hslData) {
     const textoHSL = document.createElement("p");
-    textoHSL.textContent = `HSL ${hslData}`;
+    textoHSL.textContent = hslData;
     info.appendChild(textoHSL);
   }
 
@@ -188,12 +188,22 @@ function renderDesdeColores(colores) {
    EVENTOS
 ========================= */
 
+/* HSL */
 btnHSL.addEventListener("click", () => {
-  generarTarjetas(parseInt(select.value, 10), "HSL");
+  const cantidad = parseInt(select.value, 10);
+  generarTarjetas(cantidad, "HSL");
+
+  btnHSL.classList.add("activo");
+  btnHEX.classList.remove("activo");
 });
 
+/* HEX */
 btnHEX.addEventListener("click", () => {
-  generarTarjetas(parseInt(select.value, 10), "HEX");
+  const cantidad = parseInt(select.value, 10);
+  generarTarjetas(cantidad, "HEX");
+
+  btnHEX.classList.add("activo");
+  btnHSL.classList.remove("activo");
 });
 
 toggleTema.addEventListener("click", () => {
@@ -201,24 +211,44 @@ toggleTema.addEventListener("click", () => {
   toggleTema.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 });
 
+/* Ver guardados / Volver */
 btnVer.addEventListener("click", () => {
   if (!modoGuardadosActivo) {
     renderDesdeColores(obtenerGuardados());
     btnVer.textContent = "Volver";
     modoGuardadosActivo = true;
+
+    /* verde en ver y limpiar */
+    btnVer.classList.add("guardados-activo");
+    btnLimpiar.classList.add("guardados-activo");
+
+    /* deshabilitar controles */
+    btnHSL.disabled = true;
+    btnHEX.disabled = true;
+    select.disabled = true;
+
   } else {
     renderDesdeColores(vistaActual.colores);
-    btnVer.textContent = "Ver colores guardados";
+    btnVer.textContent = "Colores Guardados";
     modoGuardadosActivo = false;
+
+    /* quitar verde */
+    btnVer.classList.remove("guardados-activo");
+    btnLimpiar.classList.remove("guardados-activo");
+
+    /* rehabilitar controles */
+    btnHSL.disabled = false;
+    btnHEX.disabled = false;
+    select.disabled = false;
   }
 });
 
 btnLimpiar.addEventListener("click", () => {
-  localStorage.removeItem("colores");
-  if (modoGuardadosActivo) {
-    renderDesdeColores([]);
-  }
-});
+    localStorage.removeItem("colores");
+        if (modoGuardadosActivo) {
+            renderDesdeColores([]);
+        }
+    });
 
 /* Colores Aleatorios HEX o HSL al cargar la página */
 document.addEventListener("DOMContentLoaded", () => {

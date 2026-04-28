@@ -4,23 +4,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* BASE */
 html {
-  font-size: 100%;  /* si cambias esto todo escalará proporcionalmente */
+  font-size: 100%;
 }
+
 /* Body */
 body {
   font-family: Arial, sans-serif;
+
+  background-image: url('../img/Imagen.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* AGREGAR ESTO */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header */
+/* Header — overlay cálido oscuro */
 .header {
   position: relative;
   text-align: center;
-  padding: 1rem;
-  background-color: #eee;
+  padding: 2rem 1rem;
+  background-color: rgba(101, 67, 33, 0.15);
 }
-/* Modo oscuro/claro  */
+
+/* Modo oscuro/claro */
 .toggle-tema {
   position: absolute;
   top: 1rem;
@@ -28,58 +41,78 @@ body {
 
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 
+/* Dark mode — body */
 body.dark-mode {
-  background-color: #121212;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('../img/Imagen.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #ffffff;
 }
 
+/* Dark mode — header y footer */
 body.dark-mode .header {
-  background-color: #1e1e1e;
+  background-color: rgba(0, 0, 0, 0.15);
+  background-image: none;
 }
 
 body.dark-mode footer {
-  background-color: #1e1e1e;
+  background-color: rgba(0, 0, 0, 0.15);
+  background-image: none;
 }
 
 .titulo-principal {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
-
+ 
 .descripcion {
   font-size: 0.875rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* Contenido principal */
 .paleta {
   padding: 1rem;
+  flex: 1; /* AGREGAR ESTO */
 }
 
 /* Controles */
 .control {
   margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .control label {
-  margin-right: 0.3rem;
+  margin-right: 0;
 }
 
 .control select {
-  margin-right: 0.6rem;
+  margin-right: 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .control button {
-  margin-right: 0.3rem;
+  margin-right: 0;
 }
 
 .lock {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
@@ -89,6 +122,7 @@ body.dark-mode footer {
   grid-template-columns: repeat(3, 1fr);
   gap: 0.625rem;
 }
+
 /* Tablets */
 @media (max-width: 48rem) {
   .galeria {
@@ -98,30 +132,115 @@ body.dark-mode footer {
 
 /* Móviles */
 @media (max-width: 30rem) {
-  .galeria {
-    grid-template-columns: 1fr;
+  body,
+  body.dark-mode {
+    background-attachment: scroll;
   }
 }
-
 .tarjeta {
   position: relative;
   background-color: var(--color-fondo, #ccc);
   color: var(--color-texto, #000);
   padding: 1.25rem;
   min-height: 10rem;
-  /* aspect-ratio: 1 / 1; */
-  /* mejora visual */
   border-radius: 0.75rem;
   overflow: hidden;
-  /* para que no se deformen en el grid */
   display: flex;
 }
+
+/* Botones HSL y HEX — circular */
+#btnHSL,
+#btnHEX {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+/* Botones rectangulares fijos */
+#verGuardados,
+#limpiarStorage {
+  width: 10rem;
+  height: 5rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+/* Boton activo azul */
+#btnHSL.activo,
+#btnHEX.activo {
+  background-color: #5b9bd5;
+  color: white;
+}
+
+/* Botones en modo guardados — verde */
+#verGuardados.guardados-activo,
+#limpiarStorage.guardados-activo {
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Disabled */
+button:disabled,
+select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Dark mode — botones */
+body.dark-mode #btnHSL,
+body.dark-mode #btnHEX,
+body.dark-mode #verGuardados,
+body.dark-mode #limpiarStorage {
+  background-color: #444;
+  color: #ffffff;
+}
+
+/* Dark mode — boton activo azul */
+body.dark-mode #btnHSL.activo,
+body.dark-mode #btnHEX.activo {
+  background-color: #3a7abf;
+  color: #ffffff;
+}
+
+/* Dark mode — botones en modo guardados verde */
+body.dark-mode #verGuardados.guardados-activo,
+body.dark-mode #limpiarStorage.guardados-activo {
+  background-color: #3d8b3d;
+  color: #ffffff;
+}
+
+/* Dark mode — select */
+body.dark-mode .control select {
+  background-color: #444;
+  color: #ffffff;
+  border: 1px solid #666;
+}
+
+/* Dark mode — botones deshabilitados */
+body.dark-mode button:disabled,
+body.dark-mode select:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .info-color {
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;
   font-size: 0.8rem;
 }
+
 .mensaje-copy {
   position: absolute;
   bottom: 0.5rem;
@@ -136,10 +255,14 @@ body.dark-mode footer {
   font-size: 0.75rem;
 }
 
-/* Footer */
+/* Footer — overlay cálido más oscuro que el header */
 footer {
   text-align: center;
-  padding: 1rem;
-  background-color: #eee;
+  padding: 2rem 1rem;
   margin-top: 1.25rem;
+  background-color: rgba(101, 67, 33, 0.15);
+}
+
+footer small {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
