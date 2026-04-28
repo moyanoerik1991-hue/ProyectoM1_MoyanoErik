@@ -255,6 +255,83 @@ body.dark-mode select:disabled {
   font-size: 0.75rem;
 }
 
+/* Botón detective */
+.toggle-ayuda {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Overlay oscuro de fondo */
+.overlay-ayuda {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-ayuda.visible {
+  display: flex;
+}
+
+/* Caja de instrucciones */
+.modal-ayuda {
+  background: white;
+  color: #333;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  line-height: 1.8;
+}
+
+.modal-ayuda h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.modal-ayuda p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-ayuda strong {
+  color: #5b9bd5;
+}
+
+/* Botón cerrar */
+.btn-cerrar-ayuda {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Dark mode — modal */
+body.dark-mode .modal-ayuda {
+  background: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode .btn-cerrar-ayuda {
+  color: #ffffff;
+}
+
 /* Footer — overlay cálido más oscuro que el header */
 footer {
   text-align: center;

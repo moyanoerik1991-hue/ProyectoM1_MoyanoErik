@@ -10,6 +10,10 @@ const btnLimpiar = document.getElementById("limpiarStorage");
 
 const toggleTema = document.getElementById("toggleTema");
 
+const toggleAyuda = document.getElementById("toggleAyuda");
+const overlayAyuda = document.getElementById("overlayAyuda");
+const cerrarAyuda = document.getElementById("cerrarAyuda");
+
 let mensajeActivo = null;
 
 let vistaActual = {
@@ -249,6 +253,23 @@ btnLimpiar.addEventListener("click", () => {
             renderDesdeColores([]);
         }
     });
+
+/* Abrir modal */
+toggleAyuda.addEventListener("click", () => {
+  overlayAyuda.classList.add("visible");
+});
+
+/* Cerrar con botón ✕ */
+cerrarAyuda.addEventListener("click", () => {
+  overlayAyuda.classList.remove("visible");
+});
+
+/* Cerrar clickeando fuera del modal */
+overlayAyuda.addEventListener("click", (e) => {
+  if (e.target === overlayAyuda) {
+    overlayAyuda.classList.remove("visible");
+  }
+});
 
 /* Colores Aleatorios HEX o HSL al cargar la página */
 document.addEventListener("DOMContentLoaded", () => {

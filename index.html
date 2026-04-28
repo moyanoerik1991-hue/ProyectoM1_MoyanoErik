@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumergete en una colorida busqueda</title> 
+    <title>Sumergete en una Colorida Busqueda</title> 
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
        </div>
     </header>
     <button id="toggleTema" class="toggle-tema">🌙</button>
+    <button id="toggleAyuda" class="toggle-ayuda">🕵️</button>
     <!-- AREA DE CONTENIDO PRINCIPAL -->
     <main class="paleta">
         <div class="control">
@@ -33,6 +34,19 @@
         <section class="galeria" id="galeria"></section>
         <script src="./js/script.js" defer></script>
     </main>  
+    <div class="overlay-ayuda" id="overlayAyuda">
+        <div class="modal-ayuda">
+            <button class="btn-cerrar-ayuda" id="cerrarAyuda">✕</button>
+            <h2>🕵️ Instrucciones de Uso</h2>
+                <p><strong>Paso 1:</strong> Selecciona la cantidad de colores (6 - 8 - 9).</p>
+                <p><strong>Paso 2:</strong> Click en botones HEX o HSL para iniciar búsqueda aleatoria.</p>
+                <p><strong>Paso 3:</strong> Click en el candado 🔓 para guardar colores.</p>
+                <p><strong>Paso 4:</strong> Podrás ver en cualquier momento los colores guardados dando click en "Ver Colores Guardados" y/o volver para aumentar tu colección.</p>
+                <p><strong>Consejo:</strong> Utiliza el intercambio entre modo claro/oscuro para apreciar mejor los colores.</p>
+                <p><strong>Paso 5:</strong> Podrás copiar su código en formato HEX en cualquier momento dando click en la tarjeta.</p>
+                <p><strong>Paso 6:</strong> El botón "Limpiar Storage" quitará el candado 🔒.</p>
+        </div>
+    </div>  
     <!-- PIE DE PÁGINA -->
     <footer id="contacto">
         <small>
