@@ -1,10 +1,10 @@
 # Proyecto Integrador del Módulo 1
 
-## Presentacion
+## 🙋‍♂️ Presentacion
 
-Soy Erik Moyano, estudiante de Full Stack Developer en la academia Soy-Henry.
+**Soy Erik Moyano, estudiante de Full Stack Developer en la academia Soy-Henry.**
 
-**Estoy a cargo del desarrollo de una pagina web, que genera colores de manera aleatoria.**
+ - Estoy a cargo del desarrollo de una pagina web, que genera colores de manera aleatoria.
 
 ### ✨ Funcionalidades
 
@@ -114,7 +114,7 @@ paleta-colores/
 ```
 ---
 
-## Pasos para Ejecutar y Descargar la Aplicacion
+## 📚 Pasos para Descargar y Ejecutar la Aplicacion
 
 ### 💻 Descarga Del Proyecto a Nuestro Ordenador
 
@@ -125,7 +125,19 @@ paleta-colores/
  - Dentro de la pagina daremos click en el boton  <span style="color: green">**<> Code**</span>  para desplegar la ventana, 
  dentro encontraremos la opcion de **Download ZIP** desde donde descargaremos el proyecto.
  - Con el archivo ZIP ya descargado, descomprimir en una carpeta facil de ubicar.
+
+### 📖 Lectura del Proyecto en el VS Code
+
+![alt](./img/VS%20Code1.jpg)
+
  - En caso de no tener instalado el Studio Visual Code, pueden descargarlo desde el **Sitio Oficial:** https://code.visualstudio.com
+ - Dentro de la aplicacion VS Code, daremos click en la opcion **Open Folder**, luego buscaremos la carpeta donde descargamos anteriormente el proyecto.
+ - <span style="color: red">**Importante**</span> al abrir el proyecto el VS Code nos preguntara si los archivos son confiables.
+ - Completada la lectura del proyecto, iremos a extensiones para instalar el **Live Server de Ritwick Dey** (77 millones de descarga).
+ - Con todo listo podremos dar click derecho al index.html y usar la opcion **"Open with Live Server"** para poder usar la aplicacion en el navegador de manera local.
 
-### Lectura del Proyecto en el VS Code
+---
 
+## 🌐 Desplegar la Aplicacion
+
+ - Para acceder al navegador web utilizares el GitHub Pages: https://moyanoerik1991-hue.github.io/ProyectoM1_MoyanoErik/
