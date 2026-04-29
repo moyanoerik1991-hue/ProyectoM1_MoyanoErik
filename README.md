@@ -99,18 +99,26 @@ Se utilizó **CSS Grid** con `repeat(3, 1fr)` como base y dos breakpoints:
 Se eligieron unidades `rem` en lugar de `px` para que el layout escale 
 proporcionalmente si el usuario cambia el tamaño de fuente del navegador.
 
-### 📁 Estructura del Proyecto
+## 📁 Estructura del proyecto
 
 ```
-paleta-colores/
-├── index.html
+PROYECTOM1_MOYANOERIK/
 ├── css/
 │   └── styles.css
+├── img/
+│   ├── Demo1.jpg
+│   ├── Demo2.jpg
+│   ├── GitHub.jpg
+│   ├── GitHub1.jpg
+│   ├── GitHub2.jpg
+│   ├── GitHub3.jpg
+│   ├── GitHub4.jpg
+│   ├── Imagen.jpg
+│   └── VS Code1.jpg
 ├── js/
 │   └── script.js
-└── img/
-    ├── papel.png
-    └── Imagen.jpg
+├── index.html
+└── README.md
 ```
 ---
 
@@ -140,4 +148,27 @@ paleta-colores/
 
 ## 🌐 Desplegar la Aplicacion
 
- - Para acceder al navegador web utilizares el GitHub Pages: https://moyanoerik1991-hue.github.io/ProyectoM1_MoyanoErik/
+### Generar tu GitHub Page
+
+ - Abrimos en nuestro navegador la pagina de GitHub: https://github.com/
+
+![alt](./img/GitHub.jpg) 
+ 
+ - Realizamos el Sign In/Sign Up con el metodo que nos resulte mas comodo.
+ - Ya conectados a la pagina accedemos a nuestro Proyecto.
+
+![alt](./img/GitHub2.jpg)
+
+ - Dentro de nuestro proyecto nos dirigimos a **Settings**
+
+![alt](./img/GitHub3.jpg)
+
+ - En Settings nos a **Pages**, luego seleccionamos el Branch por el cual subimos nuestro proyecto.
+ - Seleccionamos **root** si el `index.html` se encuentra dentro de la carpeta principal o **docs** si se encuentra contenida dentro de otra carpeta.
+ Aclaracion: GitHub no profundiza demasiado la busqueda de los archivos, si estos estan dentro de otras carpetas, dara como fallido la creacion de la pagina.
+ - Una vez seleccionado el branch y la carpeta, daremos click en **Save** para guardar los cambios e iniciar la creacion de la pagina (puede demorar unos minutos).
+
+![alt](./img/GitHub4.jpg)
+
+ - Una ves realizado todo correctamente, se nos genera el Link de nuestro proyecto.
+ - GitHub Pages: https://moyanoerik1991-hue.github.io/ProyectoM1_MoyanoErik/
